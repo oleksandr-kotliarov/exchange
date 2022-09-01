@@ -1,3 +1,5 @@
-Exchange
+# Exchange
 
-[DEMO](https://oleksandr-kotliarov.github.io/exchange/)
+> ### Currency exchange using **React, TypeScript, SASS**
+>
+> [DEMO](https://oleksandr-kotliarov.github.io/exchange/)
