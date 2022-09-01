@@ -94,6 +94,7 @@ function App() {
           <input
             type="text"
             className="App__input"
+            placeholder="0"
             value={firstVal}
             onChange={handleChangeFirst}
           />
@@ -108,6 +109,7 @@ function App() {
           <input
             type="text"
             className="App__input"
+            placeholder="0"
             value={secondVal}
             onChange={handleChangeSecond}
           />
