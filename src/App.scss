@@ -1,0 +1,77 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #1c1c1c;
+  height: 100vh;
+
+  padding-bottom: 100px;
+
+  &__title {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+
+    color: #fff;
+
+    &--field {
+      margin: 0 auto 80px;
+      width: max-content;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__input {
+    background: #fff;
+    border: none;
+    width: 224px;
+    height: 72px;
+    outline: none;
+
+    text-align: center;
+
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 44px;
+
+    padding: 10px;
+
+    color: #1c1c1c;
+
+    transition: background-color 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 4px 6px 6px rgba(86, 86, 86, 0.25);
+    }
+
+    &:focus {
+      background-color: #ddd;
+      box-shadow: 4px 6px 6px rgba(86, 86, 86, 0.25);
+    }
+
+    &-field {
+      display: flex;
+
+      height: 72px;
+
+      &:first-child {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  &__arrows {
+    margin-bottom: 40px;
+  }
+}
