@@ -59,6 +59,9 @@ export const Selector: FC<Props> = memo(({ data, selected, onSelect }) => {
           src="dropdown.svg"
           alt="dropdown"
           className="Selector__dropdown"
+          style={{
+            transform: `translateY(-50%) rotate(${isOpen ? '180deg' : 0})`,
+          }}
         />
       </button>
 
