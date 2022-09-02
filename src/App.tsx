@@ -6,8 +6,8 @@ import {
   useState,
 } from 'react';
 import './App.scss';
-import { AuthField } from './components/AuthField';
-import { Exchanger } from './components/Exchanger';
+import { AuthField } from './components/AuthField/AuthField';
+import { Exchanger } from './components/Exchanger/Exchanger';
 
 const App: FC = memo(() => {
   const [isAuthorised, setIsAuthorised] = useState(false);

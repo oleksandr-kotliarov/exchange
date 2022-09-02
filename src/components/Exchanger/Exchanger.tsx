@@ -61,21 +61,21 @@ export const Exchanger: FC = memo(() => {
           default:
             break;
         }
-      }
 
-      if (currency) {
-        const current = currency[selectedFirst][selectedSecond];
+        if (currency) {
+          const current = currency[selectedFirst][selectedSecond];
 
-        if (inputNum === InputNum.first) {
-          const newRes = Math.round(current * +value * 100) / 100;
+          if (inputNum === InputNum.first) {
+            const newRes = Math.round(current * +value * 100) / 100;
 
-          setSecondVal(String(newRes));
-        }
+            setSecondVal(String(newRes));
+          }
 
-        if (inputNum === InputNum.second) {
-          const newRes = Math.round((+value / current) * 100) / 100;
+          if (inputNum === InputNum.second) {
+            const newRes = Math.round((+value / current) * 100) / 100;
 
-          setFirstVal(String(newRes));
+            setFirstVal(String(newRes));
+          }
         }
       }
     },
