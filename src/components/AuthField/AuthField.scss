@@ -1,27 +1,17 @@
-.App {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  padding: 50px 0 10px;
-
-  @media (min-height: 500px) {
-    padding: 0;
-  }
+.AuthField {
+  display: flex;
+  flex-direction: column;
 
   &__title {
     font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 64px;
+    font-size: 32px;
     line-height: 77px;
+    
+    margin: 0;
 
     color: #fff;
-  }
-
-  &__content {
-    margin-top: 40px;
   }
 
   &__btn {
@@ -32,6 +22,7 @@
     background-color: #353535;
     border: none;
     outline: none;
+    margin-bottom: 10px;
 
     cursor: pointer;
 
@@ -41,11 +32,6 @@
     font-size: 16px;
     line-height: 29px;
     text-transform: uppercase;
-
-    width: 70%;
-
-    padding: 10px;
-    margin: 20px auto 0;
 
     color: #fff;
 
@@ -60,5 +46,13 @@
     &:active {
       background-color: #2d2d2d;
     }
+
+    &--active {
+      background-color: #131313;
+    }
+  }
+
+  &__confirm {
+    margin-top: 40px;
   }
 }

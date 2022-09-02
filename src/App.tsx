@@ -1,127 +1,51 @@
 import {
-  ChangeEvent,
+  FC,
+  memo,
   useCallback,
   useEffect,
   useState,
 } from 'react';
 import './App.scss';
-import { Selector } from './Selector';
-import { getCurrency } from './api';
+import { AuthField } from './components/AuthField';
+import { Exchanger } from './components/Exchanger';
 
-const regExp = /(^[1-9])\d*\.{0,1}\d*/;
-
-const data = [
-  'eur',
-  'usd',
-  'uah',
-  'pln',
-];
-
-function App() {
-  const [selectedFirst, setSelectedFirst] = useState('eur');
-  const [selectedSecond, setSelectedSecond] = useState('usd');
-  const [firstVal, setFirstVal] = useState('');
-  const [secondVal, setSecondVal] = useState('');
-  const [currency, setCurrency] = useState(null);
+const App: FC = memo(() => {
+  const [isAuthorised, setIsAuthorised] = useState(false);
 
   useEffect(() => {
-    getCurrency(selectedFirst)
-      .then(setCurrency);
-  }, [selectedFirst]);
-
-  const changeFirstSel = useCallback((el: string) => {
-    setSelectedFirst(el);
-    setFirstVal('');
-    setSecondVal('');
+    setIsAuthorised(
+      localStorage.getItem('currencyList') !== null,
+    );
   }, []);
 
-  const changeSecondSel = useCallback((el: string) => {
-    setSelectedSecond(el);
-    setFirstVal('');
-    setSecondVal('');
+  const goToChoose = useCallback(() => {
+    setIsAuthorised(false);
   }, []);
-
-  const handleChangeFirst = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    if (value === '') {
-      setFirstVal('');
-      setSecondVal('');
-    }
-
-    if (value.match(regExp) && value.split('.').length <= 2) {
-      setFirstVal(value);
-
-      if (currency) {
-        const current = currency[selectedFirst][selectedSecond];
-        const newRes = Math.round(current * +value * 100) / 100;
-
-        setSecondVal(String(newRes));
-      }
-    }
-  }, [currency, selectedFirst, selectedSecond]);
-
-  const handleChangeSecond = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    if (value === '') {
-      setFirstVal('');
-      setSecondVal('');
-    }
-
-    if (regExp.test(value) && value.split('.').length <= 2) {
-      setSecondVal(value);
-
-      if (currency) {
-        const current = currency[selectedFirst][selectedSecond];
-        const newRes = Math.round((+value / current) * 100) / 100;
-
-        setFirstVal(String(newRes));
-      }
-    }
-  }, [currency, selectedFirst, selectedSecond]);
 
   return (
     <div className="App">
-      <div className="App__title--field">
-        <h1 className="App__title">
-          Exchange
-        </h1>
+      <h1 className="App__title">
+        Exchange
+      </h1>
+
+      <div className="App__content">
+        {isAuthorised
+          ? <Exchanger />
+          : <AuthField onConfirm={setIsAuthorised} />}
+
       </div>
 
-      <div className="App__field">
-        <div className="App__input-field">
-          <input
-            type="text"
-            className="App__input"
-            placeholder="0"
-            value={firstVal}
-            onChange={handleChangeFirst}
-          />
-          <Selector
-            data={data.filter(el => el !== selectedFirst)}
-            selected={selectedFirst}
-            onSelect={changeFirstSel}
-          />
-        </div>
-        <img src="arrows.svg" alt="arrow" className="App__arrows" />
-        <div className="App__input-field">
-          <input
-            type="text"
-            className="App__input"
-            placeholder="0"
-            value={secondVal}
-            onChange={handleChangeSecond}
-          />
-          <Selector
-            data={data.filter(el => el !== selectedSecond)}
-            selected={selectedSecond}
-            onSelect={changeSecondSel}
-          />
-        </div>
-      </div>
+      {isAuthorised && (
+        <button
+          className="App__btn"
+          type="submit"
+          onClick={goToChoose}
+        >
+          Change currencies
+        </button>
+      )}
     </div>
   );
-}
+});
 
 export default App;
