@@ -1,5 +1,5 @@
 # Exchange
 
-> ### Currency exchange using **React, TypeScript and SASS**
+> ### Technologies used: React, TypeScript, SASS
 >
-> [DEMO](https://oleksandr-kotliarov.github.io/exchange/)
+> [DEMO LINK](https://oleksandr-kotliarov.github.io/exchange/)
