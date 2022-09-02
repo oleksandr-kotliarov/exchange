@@ -1,0 +1,58 @@
+.AuthField {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 77px;
+    
+    margin: 0;
+
+    color: #fff;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background-color: #353535;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+
+    cursor: pointer;
+
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 29px;
+    text-transform: uppercase;
+
+    color: #fff;
+
+    height: 40px;
+
+    transition: box-shadow 0.3s, background-color 0.5s;
+
+    &:hover {
+      box-shadow: 4px 6px 6px rgba(86, 86, 86, 0.25);
+    }
+
+    &:active {
+      background-color: #2d2d2d;
+    }
+
+    &--active {
+      background-color: #131313;
+    }
+  }
+
+  &__confirm {
+    margin-top: 40px;
+  }
+}

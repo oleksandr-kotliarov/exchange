@@ -1,17 +1,14 @@
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.scss';
+import App from './App';
 
-import 'bulma/css/bulma.css';
-import '@fortawesome/fontawesome-free/css/all.css';
-import './styles/index.scss';
-
-import { App } from './App';
-import { AuthProvider } from './components/Auth/AuthContext';
-
-const Root = () => (
-  <AuthProvider>
-    <App />
-  </AuthProvider>
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement,
 );
 
-createRoot(document.getElementById('root') as HTMLDivElement)
-  .render(<Root />);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);
