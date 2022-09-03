@@ -6,6 +6,8 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { CurrencyInfo } from '../../types/CurrencyInfo';
+import { getCurrencyInfo } from '../../utils/api';
 
 import './AuthField.scss';
 
@@ -26,14 +28,16 @@ interface Props {
 }
 
 export const AuthField: FC<Props> = memo(({ onConfirm }) => {
-  const [selected, setSelected] = useState<string[]>(['eur', 'usd', 'uah']);
+  const [selected, setSelected] = useState<string[]>(
+    JSON.parse(localStorage.getItem('currencyList') || '["eur", "usd", "uah"]'),
+  );
+  const [currencyInfo, setCurrencyInfo] = useState<CurrencyInfo>({
+    eur: 'Euro',
+  });
 
   useEffect(() => {
-    const currentSelected = localStorage.getItem('currencyList');
-
-    if (currentSelected) {
-      setSelected(JSON.parse(currentSelected));
-    }
+    getCurrencyInfo()
+      .then(setCurrencyInfo);
   }, []);
 
   const handleChoose = useCallback((el: string) => {
@@ -63,7 +67,19 @@ export const AuthField: FC<Props> = memo(({ onConfirm }) => {
           key={el}
           onClick={() => handleChoose(el)}
         >
+          <div
+            className="AuthField__info"
+          >
+            <div className="AuthField__info--text">
+              {currencyInfo[el as keyof CurrencyInfo]}
+            </div>
+          </div>
+
           {el}
+          <i
+            className={cn('AuthField__check',
+              { 'AuthField__check--active': selected.includes(el) })}
+          />
         </button>
       ))}
 

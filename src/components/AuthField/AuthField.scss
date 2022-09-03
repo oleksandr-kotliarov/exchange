@@ -8,7 +8,7 @@
     font-weight: 700;
     font-size: 32px;
     line-height: 77px;
-    
+
     margin: 0;
 
     color: #fff;
@@ -54,5 +54,56 @@
 
   &__confirm {
     margin-top: 40px;
+  }
+
+  &__check {
+    background-image: url("../../images/check.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    width: 20px;
+    height: 20px;
+
+    transform: scale(0);
+
+    transition: transform 0.3s;
+
+    &--active {
+      transform: scale(1);
+    }
+  }
+
+  &__info {
+    position: relative;
+
+    background-image: url("../../images/info.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+
+    &--text {
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%) scale(0);
+      top: -20px;
+
+      min-width: max-content;
+
+      padding: 0 4px;
+
+      background-color: #4f4f4f;
+
+      font-size: 8px;
+      line-height: 16px;
+
+      transition: transform 0.3s;
+    }
+
+    &:hover &--text {
+      transform: translateX(50%) scale(1);
+    }
   }
 }
